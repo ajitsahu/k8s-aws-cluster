@@ -1,0 +1,17 @@
+apiServer:
+  enabled: true
+
+typha:
+  enabled: true  # Recommended for >50 nodes
+
+installation:
+  enabled: true
+  cni:
+    type: Calico
+  calicoNetwork:
+    bgp: Disabled  # bgp routing require for crosssubnet
+    ipPools:
+      - cidr: 192.168.0.0/16  # This will be overridden by your script via --set
+        encapsulation: VXLAN  # Crosssubnet require only if different AZ
+        natOutgoing: Enabled
+        nodeSelector: all()

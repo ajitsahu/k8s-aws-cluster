@@ -1,0 +1,20 @@
+{
+  "builds": [
+    {
+      "name": "kubernetes_control",
+      "builder_type": "amazon-ebs",
+      "build_time": 1755133094,
+      "files": null,
+      "artifact_id": "ap-south-1:ami-0005d978c74b19ed3",
+      "packer_run_uuid": "68a1e002-25ae-2ed8-dbbe-987c405fad2a",
+      "custom_data": {
+        "ami_type": "control-plane",
+        "base_ami_id": "ami-0ec3f93cf7ecd1eeb",
+        "build_time": "2025-08-14T00:58:14Z",
+        "containerd_version": "1.7.27-0ubuntu1~24.04.1",
+        "kubernetes_version": "1.32.4"
+      }
+    }
+  ],
+  "last_run_uuid": "68a1e002-25ae-2ed8-dbbe-987c405fad2a"
+}

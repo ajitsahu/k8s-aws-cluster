@@ -1,0 +1,140 @@
+# Terraform files
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.terraform/
+.terraform.lock.hcl
+crash.log
+crash.*.log
+
+# Terraform plan files
+*.tfplan
+*.tfplan.*
+
+# Override files as they are usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Include override files you do wish to add to version control using negated pattern
+# !example_override.tf
+
+# Include tfplan files you do wish to add to version control using negated pattern
+# !example.tfplan
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# Kubernetes config files (contains sensitive data)
+kubeconfig
+kubeconfig.*
+*.kubeconfig
+config
+
+# AWS credentials and config
+.aws/
+aws-credentials
+credentials
+
+# SSH keys
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Log files
+*.log
+logs/
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Node.js (if using any Node.js tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (if using any Python tools)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+.venv
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Certificate files (sensitive)
+*.crt
+*.cert
+*.ca-bundle
+*.p12
+*.p7b
+*.p7c
+*.pfx
+
+# Helm charts (if used)
+charts/
+*.tgz
+
+# Local test files
+test-*
+*-test
+testing/
+
+# Documentation build files
+docs/_build/
+site/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# Ignore any local scripts or notes
+local-*
+notes.txt
+TODO.txt
+NOTES.md
+
+# Ignore any local configuration overrides
+local.tf
+local.tfvars

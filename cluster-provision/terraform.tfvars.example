@@ -1,0 +1,73 @@
+# Terraform Variables Configuration
+# 
+# IMPORTANT: Copy this file to 'terraform.tfvars' and customize the values below:
+#   cp terraform.tfvars.example terraform.tfvars
+#
+# Then edit terraform.tfvars with your specific configuration values.
+# Never commit terraform.tfvars to version control as it may contain sensitive data.
+
+# =============================================================================
+# AWS INFRASTRUCTURE CONFIGURATION
+# =============================================================================
+
+# AWS Region and Availability Zone
+region              = "ap-south-1"
+availability_zones  = ["ap-south-1a"]  # Single AZ for cost optimization
+
+# EC2 Key Pair for SSH Access
+ssh_key_name        = "your-ssh-key"  # Must exist in AWS before deployment
+
+# Instance Types and Sizing
+control_instance_type = "t3.medium"    # Control plane nodes
+worker_instance_type  = "t3.medium"    # Worker nodes
+root_volume_size      = 20             # EBS volume size in GB
+
+# Bastion Host Configuration (SSH Gateway)
+bastion_instance_type     = "t2.micro"
+bastion_root_volume_size  = 20
+bastion_enable_eip        = true
+bastion_ssh_cidr_blocks   = ["0.0.0.0/0", "10.0.0.0/16"]  # Restrict to your IP
+
+# Load Balancer Configuration
+api_load_balancer_scheme = "internet-facing"  # External kubectl access
+
+# =============================================================================
+# KUBERNETES CLUSTER CONFIGURATION
+# =============================================================================
+
+# Cluster Identity
+cluster_name        = "your-cluster-name"
+
+# Node Counts
+control_count       = 3  # HA requires 3+ control nodes
+worker_count        = 1  # Initial worker node count
+
+# Network Configuration (CIDR blocks must not overlap)
+pod_cidr            = "192.168.0.0/16"  # Pod network: 192.168.0.0 - 192.168.255.255
+service_cidr        = "10.96.0.0/12"    # Service network: 10.96.0.0 - 10.111.255.255
+
+# Software Versions
+kubernetes_version  = "1.30.0"  # Change to desired Kubernetes version
+containerd_version  = "1.7.27-0ubuntu1~24.04.1"
+
+# =============================================================================
+# RESOURCE TAGS
+# =============================================================================
+
+tags = {
+  Environment = "Production"
+  ManagedBy   = "Terraform"
+  Project     = "Kubernetes-Cluster"
+  Owner       = "DevOps-Team"
+}
+
+# Note: All security groups use the same CIDR blocks defined in locals.tf
+# This eliminates repetition and makes maintenance easier
+
+# Cleanup configuration
+cleanup_wait_seconds = 60  # Time to wait before running cleanup script
+
+# Port configuration
+api_server_port = 6443        # Kubernetes API server port
+ssh_port        = 22          # SSH access port
+node_port_range = "30000-32767"  # NodePort service range
